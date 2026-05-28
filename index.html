@@ -574,12 +574,19 @@
     color: var(--text-strong);
     font-size: 1.05rem;
     font-weight: 700;
-    margin: 0 0 18px;
+    margin: 0 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--card-border);
   }
-  .music-block { margin-top: 30px; }
-  .music-block:first-child { margin-top: 0; }
+  /* Two-column music layout */
+  .music-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .music-block { }
 
-  /* ① Listening stat cards */
+  /* ① Listening stat cards (kept for future use) */
   .music-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -719,6 +726,7 @@
     .nav-links { gap: 16px; }
     .nav-links a { font-size: 0.82rem; }
     .music-stats { grid-template-columns: repeat(2, 1fr); }
+    .music-cols { grid-template-columns: 1fr; }
     .about-grid { grid-template-columns: 1fr; gap: 18px; }
     .photo-row { grid-template-columns: 1fr; }
     section.block { padding: 56px 6vw; }
@@ -751,7 +759,7 @@
   </div>
   <div class="avatar-msg" id="avatarMsg">Another side of me 👋</div>
   <h1>Yukai Wang&nbsp;·&nbsp;王誉凯</h1>
-  <p class="subtitle">B.S. Bioinformatics &amp; CS Minor @ <span class="accent">SJTU</span></p>
+  <p class="subtitle">B.S. Bioinformatics &amp; B.E. CS (Minor) @ <span class="accent">SJTU</span></p>
 
   <div class="hero-meta">
     <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Shanghai, China</span>
@@ -795,17 +803,17 @@
   <div class="card about">
     <div class="about-grid">
       <div class="about-badge" id="aboutBadge">
-        <img src="sjtu-logo.png" alt="Shanghai Jiao Tong University"
+        <img src="photos/sjtu-logo.png" alt="Shanghai Jiao Tong University"
           onerror="this.style.display='none';this.parentElement.classList.add('badge-empty')" />
       </div>
       <div>
-        <p>I'm an undergraduate at <strong>Shanghai Jiao Tong University</strong>, pursuing a <strong>B.S. in Bioinformatics</strong> with a <strong>minor in Computer Science</strong>.</p>
+        <p>I'm an undergraduate at <strong>Shanghai Jiao Tong University</strong>, pursuing a <strong>B.S. in Bioinformatics</strong> and a <strong>B.E. in Computer Science</strong> (minor).</p>
         <p class="about-soon">More about me — coming soon.</p>
         <div class="timeline" style="margin-top:20px;">
           <div class="tl-item">
             <div class="tl-year">2023 — Present</div>
             <div class="tl-title">Shanghai Jiao Tong University</div>
-            <div class="tl-desc">B.S. Bioinformatics · Computer Science (Minor)</div>
+            <div class="tl-desc">B.S. Bioinformatics · B.E. Computer Science (Minor)</div>
           </div>
         </div>
       </div>
@@ -918,19 +926,28 @@
     <span class="rule"></span>
   </div>
   <div class="card">
-    <div class="music-block">
-      <div class="music-sub-title">May 2026 · Top 10</div>
-      <div class="playlist">
-        <div class="track top3"><span class="rank">1</span><div class="meta"><div class="t">前度</div><div class="a">朱雅</div></div></div>
-        <div class="track top3"><span class="rank">2</span><div class="meta"><div class="t">一个人想着一个人（说唱版）</div><div class="a">艾比利</div></div></div>
-        <div class="track top3"><span class="rank">3</span><div class="meta"><div class="t">我可以假装很好</div><div class="a">何洁 / 苏醒 AllenSu</div></div></div>
-        <div class="track"><span class="rank">4</span><div class="meta"><div class="t">生分</div><div class="a">川青</div></div></div>
-        <div class="track"><span class="rank">5</span><div class="meta"><div class="t">你曾是少年</div><div class="a">S.H.E</div></div></div>
-        <div class="track"><span class="rank">6</span><div class="meta"><div class="t">到此为止</div><div class="a">朱雅</div></div></div>
-        <div class="track"><span class="rank">7</span><div class="meta"><div class="t">恶作剧</div><div class="a">王蓝茵</div></div></div>
-        <div class="track"><span class="rank">8</span><div class="meta"><div class="t">阳光下的星星</div><div class="a">金海心</div></div></div>
-        <div class="track"><span class="rank">9</span><div class="meta"><div class="t">迷人的危险</div><div class="a">Dance Flow</div></div></div>
-        <div class="track"><span class="rank">10</span><div class="meta"><div class="t">听妈妈的话</div><div class="a">周杰伦</div></div></div>
+    <div class="music-cols">
+      <!-- Top 5 Artists -->
+      <div class="music-block">
+        <div class="music-sub-title">Top Artists · May 2026</div>
+        <div class="playlist">
+          <div class="track top3"><span class="rank">1</span><div class="meta"><div class="t">周杰伦</div><div class="a">Jay Chou</div></div></div>
+          <div class="track top3"><span class="rank">2</span><div class="meta"><div class="t">G.E.M. 邓紫棋</div><div class="a">Gloria Tang</div></div></div>
+          <div class="track top3"><span class="rank">3</span><div class="meta"><div class="t">陈奕迅</div><div class="a">Eason Chan</div></div></div>
+          <div class="track"><span class="rank">4</span><div class="meta"><div class="t">徐佳莹</div><div class="a">LaLa Hsu</div></div></div>
+          <div class="track"><span class="rank">5</span><div class="meta"><div class="t">郭静</div><div class="a">Claire Kuo</div></div></div>
+        </div>
+      </div>
+      <!-- Top 5 Songs -->
+      <div class="music-block">
+        <div class="music-sub-title">Top Songs · May 2026</div>
+        <div class="playlist">
+          <div class="track top3"><span class="rank">1</span><div class="meta"><div class="t">前度</div><div class="a">朱雅</div></div></div>
+          <div class="track top3"><span class="rank">2</span><div class="meta"><div class="t">一个人想着一个人</div><div class="a">艾比利</div></div></div>
+          <div class="track top3"><span class="rank">3</span><div class="meta"><div class="t">我可以假装很好</div><div class="a">何洁 / 苏醒</div></div></div>
+          <div class="track"><span class="rank">4</span><div class="meta"><div class="t">生分</div><div class="a">川青</div></div></div>
+          <div class="track"><span class="rank">5</span><div class="meta"><div class="t">你曾是少年</div><div class="a">S.H.E</div></div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -942,7 +959,7 @@
     <p style="color:#666;font-size:11px;margin-bottom:8px">Visitor Map · Global Visitors</p>
     <a href="https://mapmyvisitors.com/web/1c4t1" title="Visitor map" target="_blank" rel="noopener" style="display:inline-block;line-height:0">
       <img src="https://mapmyvisitors.com/map.png?cl=4fc3f7&w=a&t=tt&d=qyy9M7Z56cizovL7_uab9oWhsHor6y5BKyxW5Al-8qY&co=0d1b2a&ct=c9d1d9"
-        alt="Global visitor map" style="width:300px;max-width:90%;height:auto;border-radius:10px;border:1px solid rgba(79,195,247,0.25)" />
+        alt="Global visitor map" style="width:min(480px,90%);height:auto;border-radius:10px;border:1px solid rgba(79,195,247,0.25)" />
     </a>
   </div>
   <div class="copy">&copy; 2026 <span class="accent">Yukai Wang</span> · Built with Claude Code</div>
@@ -1059,10 +1076,27 @@
     { name:"黄石公园", coords:[44.43,-110.59], emoji:"🌋", region:"abroad", desc:"Geysers, bison, and the raw edge of the earth.", photo:"https://picsum.photos/240/140?random=17" }
   ];
 
+  const GEO_STYLE = {
+    fillColor: '#4FC3F7', fillOpacity: 0.18,
+    color: '#4FC3F7', weight: 1, opacity: 0.5
+  };
+
+  function addGeoLayer(url) {
+    fetch(url)
+      .then(r => r.json())
+      .then(data => L.geoJSON(data, { style: GEO_STYLE, interactive: false }).addTo(travelMap))
+      .catch(() => {});
+  }
+
   window.addEventListener('load', () => {
     if (typeof L === 'undefined') return;
     travelMap = L.map('map', { scrollWheelZoom: true, worldCopyJump: true, zoomSnap: 0.5 }).setView([28, 108], 2.5);
     applyMapTiles();
+
+    // Load visited region highlights
+    addGeoLayer('geo/visited_countries.geojson');
+    addGeoLayer('geo/china_visited.geojson');
+    addGeoLayer('geo/us_visited.geojson');
 
     places.forEach(p => {
       const icon = L.divIcon({
