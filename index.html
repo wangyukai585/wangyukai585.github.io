@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Yukai Wang · 王誉凯</title>
+<title>Yukai Wang · 数据小馆</title>
 <meta name="description" content="Personal homepage of Yukai Wang — CS & Bioinformatics @ SJTU. Research in LLMs, Agents, Multimodal, and LLM Reasoning." />
 
 <!-- Leaflet (interactive travel map) -->
@@ -47,6 +47,11 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  /* Smooth color transition on day/night switch */
+  *, *::before, *::after {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+
   html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
   body {
@@ -56,7 +61,7 @@
     background: linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 100%);
     background-attachment: fixed;
     line-height: 1.65;
-    transition: background 0.4s ease, color 0.4s ease;
+    transition: background 0.3s ease, color 0.3s ease;
     overflow-x: hidden;
   }
 
@@ -108,6 +113,8 @@
   }
   .nav-links a:hover { color: var(--text-strong); }
   .nav-links a:hover::after { width: 100%; }
+  .nav-links a.active { color: var(--text-strong); }
+  .nav-links a.active::after { width: 100%; }
 
   /* ---------- Theme toggle ---------- */
   .theme-toggle {
@@ -170,11 +177,23 @@
     background: var(--accent);
     box-shadow: 0 0 0 1px var(--card-border), 0 10px 40px rgba(79,195,247,0.25);
     cursor: pointer;
-    margin-bottom: 28px;
+    margin-bottom: 14px;
     position: relative;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
   }
   .avatar-wrap:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 0 0 1px var(--accent), 0 16px 50px rgba(79,195,247,0.4); }
+  .avatar-msg {
+    height: 1.3em;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent-2);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+  .avatar-msg.show { opacity: 1; transform: translateY(0); }
   .avatar-wrap img {
     width: 100%; height: 100%;
     border-radius: 50%;
@@ -652,25 +671,14 @@
     border-top: 1px solid var(--card-border);
     margin-top: 40px;
   }
-  .footer-map {
-    max-width: 360px;
-    margin: 0 auto 20px;
-    min-height: 120px;
-    display: grid; place-items: center;
-    border: 1px dashed var(--card-border);
-    border-radius: 14px;
-    color: var(--text-soft);
-    font-size: 0.85rem;
-    padding: 16px;
-  }
   footer .copy { color: var(--text-soft); font-size: 0.85rem; }
   footer .copy .accent { color: var(--accent); }
 
   /* Reveal on scroll */
   .reveal {
     opacity: 0;
-    transform: translateY(26px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
   .reveal.in { opacity: 1; transform: translateY(0); }
 
@@ -707,6 +715,7 @@
     <img id="avatarImg" src="avatar1.jpg" alt="Yukai Wang" />
     <span class="avatar-hint">&#8635;</span>
   </div>
+  <div class="avatar-msg" id="avatarMsg">另一面的我 👋</div>
   <h1>Yukai Wang&nbsp;·&nbsp;王誉凯</h1>
   <p class="subtitle">B.E. CS &amp; B.S. Bioinformatics @ <span class="accent">SJTU</span> · <span class="accent">NeurIPS 2026</span></p>
 
@@ -912,13 +921,14 @@
 
 <!-- ===== FOOTER ===== -->
 <footer>
-  <div class="footer-map">
-    <!-- ClustrMaps placeholder: paste your ClustrMaps <script> or <img> embed here -->
-    ClustrMaps visitor map — paste your embed code here
+  <div style="text-align:center; padding:16px 0">
+    <p style="color:#666;font-size:11px;margin-bottom:8px">Visitor Map · 全球访客</p>
+    <div style="width:220px;height:110px;background:rgba(79,195,247,0.1);
+      border:1px solid rgba(79,195,247,0.2);border-radius:10px;
+      margin:0 auto;display:flex;align-items:center;justify-content:center;
+      color:#4FC3F7;font-size:12px">🌍 clustrmaps.com（部署后替换）</div>
   </div>
-  <div class="copy">
-    Built by <span class="accent">Yukai Wang · 王誉凯</span> · &copy; <span id="year"></span> · Made with curiosity &amp; coffee
-  </div>
+  <div class="copy">&copy; 2026 <span class="accent">Yukai Wang</span> · Made with Claude Code</div>
 </footer>
 
 <script>
@@ -938,21 +948,40 @@
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 60);
   window.addEventListener('scroll', onScroll); onScroll();
 
-  /* ---------- Avatar switch ---------- */
+  /* ---------- Avatar easter egg ---------- */
+  const avatarWrap = document.getElementById('avatar');
   const avatarImg = document.getElementById('avatarImg');
+  const avatarMsg = document.getElementById('avatarMsg');
   const avatars = ['avatar1.jpg', 'avatar2.jpg'];
-  let ai = 0;
-  document.getElementById('avatar').addEventListener('click', () => {
+  const ringColors = ['#4FC3F7', '#FFB703', '#C084FC'];
+  let ai = 0, ringIdx = 0, msgTimer = null;
+  avatarWrap.addEventListener('click', () => {
+    ringIdx = (ringIdx + 1) % ringColors.length;
+    avatarWrap.style.background = ringColors[ringIdx];
     avatarImg.style.opacity = '0';
     setTimeout(() => {
       ai = (ai + 1) % avatars.length;
       avatarImg.src = avatars[ai];
       avatarImg.style.opacity = '1';
     }, 400);
+    avatarMsg.classList.add('show');
+    clearTimeout(msgTimer);
+    msgTimer = setTimeout(() => avatarMsg.classList.remove('show'), 1500);
   });
 
-  /* ---------- Footer year ---------- */
-  document.getElementById('year').textContent = new Date().getFullYear();
+  /* ---------- Nav scroll-spy highlight ---------- */
+  const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+  const spyIds = navLinks.map(a => a.getAttribute('href').slice(1));
+  function onScrollSpy() {
+    const y = window.scrollY + 130;
+    let current = spyIds[0];
+    for (const id of spyIds) {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= y) current = id;
+    }
+    navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+  }
+  window.addEventListener('scroll', onScrollSpy); onScrollSpy();
 
   /* ---------- Reveal on scroll ---------- */
   const io = new IntersectionObserver((entries) => {
