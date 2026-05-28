@@ -1,13 +1,34 @@
-# Local report artifacts (screenshots + hash), not part of the site
+# ── Site artifacts not needed in repo ────────────────────────
+# Auto-screenshots and milestone captures
 screenshots/
 
-# Local Claude Code tooling/hooks config (machine-specific paths)
+# Claude Code tooling (machine-specific)
 .claude/
 
-# Course materials, not part of the deployed site
+# Course materials (not part of the deployed site)
 vibe_coding_guide.html
 作业三_Vibe_Coding_个人主页_精简版.docx
 
 # macOS
 .DS_Store
+
+# ── Raw GeoJSON (too large; filtered versions kept in geo/) ──
 geo/countries.geojson
+
+# ── Report source & build artifacts ──────────────────────────
+# Only report.pdf is needed for submission; LaTeX source stays local
+report/report.aux
+report/report.log
+report/report.out
+report/report.toc
+report/report.tex
+report/report_assets/
+
+# Custom screenshots used during report editing (not for deployment)
+index_screenshots_2/
+
+# ── Submission zip (generated locally) ───────────────────────
+*_作业三.zip
+
+# Old README format
+README.txt
