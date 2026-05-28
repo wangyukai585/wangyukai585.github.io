@@ -175,7 +175,7 @@
   .hero > * { position: relative; z-index: 1; }
 
   .avatar-wrap {
-    width: 180px; height: 180px;
+    width: 208px; height: 208px;
     border-radius: 50%;
     padding: 3px;
     background: var(--accent);
@@ -202,6 +202,7 @@
     width: 100%; height: 100%;
     border-radius: 50%;
     object-fit: cover;
+    object-position: center 15%;
     display: block;
     transition: opacity 0.4s ease;
   }
@@ -336,26 +337,23 @@
   }
 
   /* About */
-  .about-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
-  .about p { margin-bottom: 14px; }
+  .about-grid { display: grid; grid-template-columns: 120px 1fr; gap: 28px; align-items: start; }
+  .about p { margin-bottom: 12px; }
   .about p:last-child { margin-bottom: 0; }
   .about strong { color: var(--accent); font-weight: 600; }
   .about em { color: var(--text-strong); font-style: italic; }
-  .about-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 8px;
-  }
-  .stat {
-    text-align: center;
-    padding: 18px 10px;
-    border-radius: 14px;
+  .about-soon { color: var(--text-soft); font-size: 0.9rem; }
+  .about-badge {
+    width: 120px; height: 120px;
+    display: grid; place-items: center;
+    border-radius: 16px;
     border: 1px solid var(--card-border);
     background: var(--track);
+    overflow: hidden;
   }
-  .stat .num { font-size: 1.7rem; font-weight: 800; color: var(--accent-2); font-variant-numeric: tabular-nums; }
-  .stat .lbl { font-size: 0.78rem; color: var(--text-soft); margin-top: 4px; letter-spacing: 0.3px; }
+  .about-badge img { max-width: 84%; max-height: 84%; object-fit: contain; }
+  .about-badge.badge-empty { color: var(--text-soft); font-weight: 800; font-size: 1.2rem; letter-spacing: 1px; }
+  .about-badge.badge-empty::after { content: "SJTU"; }
 
   /* Timeline */
   .timeline { position: relative; padding-left: 30px; }
@@ -428,6 +426,17 @@
     border-radius: 50%;
     background: var(--accent-2);
   }
+  .pub .paper-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 16px;
+    font-size: 0.82rem; font-weight: 600;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 5px 14px;
+    border-radius: 999px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .pub .paper-link:hover { background: var(--accent); color: #0B1120; }
 
   /* Travel */
   #map {
@@ -517,6 +526,16 @@
     font-weight: 600;
     font-size: 0.9rem;
   }
+  .photo .zoom-hint {
+    position: absolute; top: 8px; right: 8px;
+    background: rgba(11,17,32,0.82);
+    color: #fff; font-size: 0.72rem; font-weight: 600;
+    padding: 4px 9px; border-radius: 7px;
+    opacity: 0; transform: translateY(-4px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+  }
+  .photo:hover .zoom-hint { opacity: 1; transform: translateY(0); }
   /* Lightbox */
   .lightbox {
     position: fixed; inset: 0;
@@ -700,6 +719,7 @@
     .nav-links { gap: 16px; }
     .nav-links a { font-size: 0.82rem; }
     .music-stats { grid-template-columns: repeat(2, 1fr); }
+    .about-grid { grid-template-columns: 1fr; gap: 18px; }
     .photo-row { grid-template-columns: 1fr; }
     section.block { padding: 56px 6vw; }
   }
@@ -713,6 +733,7 @@
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#honors">Honors</a>
+    <a href="#research">Research</a>
     <a href="#travel">Travel</a>
     <a href="#music">Music</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -730,7 +751,7 @@
   </div>
   <div class="avatar-msg" id="avatarMsg">Another side of me 👋</div>
   <h1>Yukai Wang&nbsp;·&nbsp;王誉凯</h1>
-  <p class="subtitle">B.E. CS &amp; B.S. Bioinformatics @ <span class="accent">SJTU</span> · <span class="accent">NeurIPS 2026</span></p>
+  <p class="subtitle">B.S. Bioinformatics &amp; CS Minor @ <span class="accent">SJTU</span></p>
 
   <div class="hero-meta">
     <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Shanghai, China</span>
@@ -741,8 +762,6 @@
   <div class="tags">
     <span class="tag">LLMs</span>
     <span class="tag">LLM Agents</span>
-    <span class="tag">Multimodal</span>
-    <span class="tag">LLM Reasoning</span>
   </div>
 
   <div class="socials">
@@ -756,7 +775,7 @@
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 8.5l11 6.5 9-5.32V16h2V8.5L12 2zM5 13.18v3.32L12 21l7-4.5v-3.32l-7 4.14-7-4.14z"/></svg>
     </a>
     <a href="https://orcid.org/0009-0005-9011-3811" target="_blank" rel="noopener" aria-label="ORCID" title="ORCID">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zM7.37 18.16H5.6V8.2h1.77v9.96zM6.48 7.02a1.07 1.07 0 1 1 0-2.14 1.07 1.07 0 0 1 0 2.14zm11.25 11.14h-1.77v-4.86c0-1.16-.02-2.65-1.62-2.65-1.62 0-1.87 1.26-1.87 2.57v4.94h-1.77V8.2h1.7v1.36h.02c.24-.45.82-1.16 2.12-1.16 1.99 0 2.96 1.16 2.96 3.66v5.1z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.516.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.343 2.653 5.343 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.918V7.416zm1.444 1.303v7.444h2.297c2.359 0 3.588-1.444 3.588-3.722 0-2.016-1.091-3.722-3.588-3.722h-2.297z"/></svg>
     </a>
     <a href="mailto:wangyukai@sjtu.edu.cn" aria-label="Email" title="Email">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
@@ -775,14 +794,20 @@
   </div>
   <div class="card about">
     <div class="about-grid">
-      <div>
-        <p>I'm a sophomore at <strong>Shanghai Jiao Tong University</strong>, pursuing a dual degree in Computer Science and Bioinformatics under the <strong>Zhiyuan Honors Program</strong>. My research sits at the intersection of <strong>LLM agents and multimodality</strong> — I'm currently a second author on a benchmark paper submitted to NeurIPS 2026.</p>
-        <p>Outside the lab, I've wandered through 20 cities across 5 countries, listened to 1,047 songs in May alone, and yes — I've had <em>前度</em> on repeat 174 times this month.</p>
+      <div class="about-badge" id="aboutBadge">
+        <img src="sjtu-logo.png" alt="Shanghai Jiao Tong University"
+          onerror="this.style.display='none';this.parentElement.classList.add('badge-empty')" />
       </div>
-      <div class="about-stats">
-        <div class="stat"><div class="num">5</div><div class="lbl">Countries</div></div>
-        <div class="stat"><div class="num">20</div><div class="lbl">Cities Visited</div></div>
-        <div class="stat"><div class="num">1</div><div class="lbl">NeurIPS Paper</div></div>
+      <div>
+        <p>I'm an undergraduate at <strong>Shanghai Jiao Tong University</strong>, pursuing a <strong>B.S. in Bioinformatics</strong> with a <strong>minor in Computer Science</strong>.</p>
+        <p class="about-soon">More about me — coming soon.</p>
+        <div class="timeline" style="margin-top:20px;">
+          <div class="tl-item">
+            <div class="tl-year">2023 — Present</div>
+            <div class="tl-title">Shanghai Jiao Tong University</div>
+            <div class="tl-desc">B.S. Bioinformatics · Computer Science (Minor)</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -837,6 +862,7 @@
         <li>Co-built a 1,877-sample benchmark evaluating multimodal LLM agent memory across 5 task types, grounded in 264 heterogeneous sources.</li>
         <li>Designed a three-stage construction pipeline with human quality review (96.3% pass rate).</li>
       </ul>
+      <a class="paper-link" href="https://arxiv.org/abs/2605.15710" target="_blank" rel="noopener">arXiv:2605.15710 ↗</a>
     </div>
   </div>
 </section>
@@ -850,25 +876,28 @@
   </div>
   <div id="map"></div>
   <div class="travel-stats">
-    <span>🌍 20 Places Explored</span>
+    <span>🌍 21 Places Explored</span>
     <span class="sep">·</span>
     <span>🇨🇳 10 Cities in China</span>
     <span class="sep">·</span>
-    <span>🌏 3 Countries in Asia</span>
+    <span>🌏 4 Countries in Asia</span>
     <span class="sep">·</span>
     <span>🇺🇸 5 Cities in the US</span>
   </div>
   <div class="photo-row">
     <div class="photo" data-full="photos/sf.jpg" data-cap="San Francisco">
       <img src="photos/sf.jpg" alt="San Francisco" loading="lazy" />
+      <span class="zoom-hint">🔍 Click to enlarge</span>
       <span class="cap">San Francisco</span>
     </div>
     <div class="photo" data-full="photos/berkeley.jpg" data-cap="Berkeley">
       <img src="photos/berkeley.jpg" alt="Berkeley" loading="lazy" />
+      <span class="zoom-hint">🔍 Click to enlarge</span>
       <span class="cap">Berkeley</span>
     </div>
     <div class="photo" data-full="photos/disney.jpg" data-cap="Shanghai">
       <img src="photos/disney.jpg" alt="Shanghai" loading="lazy" />
+      <span class="zoom-hint">🔍 Click to enlarge</span>
       <span class="cap">Shanghai</span>
     </div>
   </div>
@@ -889,44 +918,19 @@
     <span class="rule"></span>
   </div>
   <div class="card">
-    <!-- ① Listening highlights -->
-    <div class="music-block">
-      <div class="music-sub-title">Listening Highlights · May 2026</div>
-      <div class="music-stats">
-        <div class="mstat"><div class="emoji">🎵</div><div class="big">1,047</div><div class="desc">tracks · May total plays</div></div>
-        <div class="mstat"><div class="emoji">🌙</div><div class="big">3:05 AM</div><div class="desc">latest late-night session</div></div>
-        <div class="mstat"><div class="emoji">📅</div><div class="big">28 days</div><div class="desc">listening streak · Top 1.44%</div></div>
-        <div class="mstat"><div class="emoji">🎤</div><div class="big">607</div><div class="desc">artists · accompanied me this month</div></div>
-      </div>
-    </div>
-
-    <!-- ② Artist chart -->
-    <div class="music-block">
-      <div class="music-sub-title">My Music Universe</div>
-      <div class="artist-chart">
-        <div class="chart-row"><div class="chart-label"><span class="name">周杰伦 Jay Chou</span><span class="plays">18 次</span></div><div class="bar-track" title="周杰伦 · 18 次"><div class="bar-fill" data-w="100%"></div></div></div>
-        <div class="chart-row"><div class="chart-label"><span class="name">G.E.M. 邓紫棋</span><span class="plays">15 次</span></div><div class="bar-track" title="邓紫棋 · 15 次"><div class="bar-fill" data-w="83%"></div></div></div>
-        <div class="chart-row"><div class="chart-label"><span class="name">陈奕迅 Eason Chan</span><span class="plays">13 次</span></div><div class="bar-track" title="陈奕迅 · 13 次"><div class="bar-fill" data-w="72%"></div></div></div>
-        <div class="chart-row"><div class="chart-label"><span class="name">徐佳莹 LaLa Hsu</span><span class="plays">10 次</span></div><div class="bar-track" title="徐佳莹 · 10 次"><div class="bar-fill" data-w="56%"></div></div></div>
-        <div class="chart-row"><div class="chart-label"><span class="name">郭静 Claire Kuo</span><span class="plays">7 次</span></div><div class="bar-track" title="郭静 · 7 次"><div class="bar-fill" data-w="39%"></div></div></div>
-      </div>
-    </div>
-
-    <!-- ③ Monthly Top 10 -->
     <div class="music-block">
       <div class="music-sub-title">May 2026 · Top 10</div>
       <div class="playlist">
-        <div class="track top3"><span class="rank">1</span><div class="meta"><div class="t">前度</div><div class="a">朱雅</div></div><span class="plays">174 次</span></div>
-        <div class="music-note">💬 "You love Zhu Ya's songs the most." <span class="src">— NetEase Music May Report</span></div>
-        <div class="track top3"><span class="rank">2</span><div class="meta"><div class="t">一个人想着一个人（说唱版）</div><div class="a">艾比利</div></div><span class="plays">41 次</span></div>
-        <div class="track top3"><span class="rank">3</span><div class="meta"><div class="t">我可以假装很好</div><div class="a">何洁 / 苏醒 AllenSu</div></div><span class="plays">39 次</span></div>
-        <div class="track"><span class="rank">4</span><div class="meta"><div class="t">生分</div><div class="a">川青</div></div><span class="plays">30 次</span></div>
-        <div class="track"><span class="rank">5</span><div class="meta"><div class="t">你曾是少年</div><div class="a">S.H.E</div></div><span class="plays">30 次</span></div>
-        <div class="track"><span class="rank">6</span><div class="meta"><div class="t">到此为止</div><div class="a">朱雅</div></div><span class="plays">28 次</span></div>
-        <div class="track"><span class="rank">7</span><div class="meta"><div class="t">恶作剧</div><div class="a">王蓝茵</div></div><span class="plays">26 次</span></div>
-        <div class="track"><span class="rank">8</span><div class="meta"><div class="t">阳光下的星星</div><div class="a">金海心</div></div><span class="plays">23 次</span></div>
-        <div class="track"><span class="rank">9</span><div class="meta"><div class="t">迷人的危险</div><div class="a">Dance Flow</div></div><span class="plays">21 次</span></div>
-        <div class="track"><span class="rank">10</span><div class="meta"><div class="t">听妈妈的话</div><div class="a">周杰伦</div></div><span class="plays">18 次</span></div>
+        <div class="track top3"><span class="rank">1</span><div class="meta"><div class="t">前度</div><div class="a">朱雅</div></div></div>
+        <div class="track top3"><span class="rank">2</span><div class="meta"><div class="t">一个人想着一个人（说唱版）</div><div class="a">艾比利</div></div></div>
+        <div class="track top3"><span class="rank">3</span><div class="meta"><div class="t">我可以假装很好</div><div class="a">何洁 / 苏醒 AllenSu</div></div></div>
+        <div class="track"><span class="rank">4</span><div class="meta"><div class="t">生分</div><div class="a">川青</div></div></div>
+        <div class="track"><span class="rank">5</span><div class="meta"><div class="t">你曾是少年</div><div class="a">S.H.E</div></div></div>
+        <div class="track"><span class="rank">6</span><div class="meta"><div class="t">到此为止</div><div class="a">朱雅</div></div></div>
+        <div class="track"><span class="rank">7</span><div class="meta"><div class="t">恶作剧</div><div class="a">王蓝茵</div></div></div>
+        <div class="track"><span class="rank">8</span><div class="meta"><div class="t">阳光下的星星</div><div class="a">金海心</div></div></div>
+        <div class="track"><span class="rank">9</span><div class="meta"><div class="t">迷人的危险</div><div class="a">Dance Flow</div></div></div>
+        <div class="track"><span class="rank">10</span><div class="meta"><div class="t">听妈妈的话</div><div class="a">周杰伦</div></div></div>
       </div>
     </div>
   </div>
@@ -938,7 +942,7 @@
     <p style="color:#666;font-size:11px;margin-bottom:8px">Visitor Map · Global Visitors</p>
     <a href="https://mapmyvisitors.com/web/1c4t1" title="Visitor map" target="_blank" rel="noopener" style="display:inline-block;line-height:0">
       <img src="https://mapmyvisitors.com/map.png?cl=4fc3f7&w=a&t=tt&d=qyy9M7Z56cizovL7_uab9oWhsHor6y5BKyxW5Al-8qY&co=0d1b2a&ct=c9d1d9"
-        alt="Global visitor map" style="width:240px;height:auto;border-radius:10px;border:1px solid rgba(79,195,247,0.25)" />
+        alt="Global visitor map" style="width:300px;max-width:90%;height:auto;border-radius:10px;border:1px solid rgba(79,195,247,0.25)" />
     </a>
   </div>
   <div class="copy">&copy; 2026 <span class="accent">Yukai Wang</span> · Built with Claude Code</div>
@@ -966,8 +970,10 @@
   const avatarImg = document.getElementById('avatarImg');
   const avatarMsg = document.getElementById('avatarMsg');
   const avatars = ['avatar1.jpg', 'avatar2.jpg'];
+  const avatarPos = ['center 15%', 'center 38%'];
   const ringColors = ['#4FC3F7', '#FFB703', '#C084FC'];
   let ai = 0, ringIdx = 0, msgTimer = null;
+  avatarImg.style.objectPosition = avatarPos[0];
   avatarWrap.addEventListener('click', () => {
     ringIdx = (ringIdx + 1) % ringColors.length;
     avatarWrap.style.background = ringColors[ringIdx];
@@ -975,6 +981,7 @@
     setTimeout(() => {
       ai = (ai + 1) % avatars.length;
       avatarImg.src = avatars[ai];
+      avatarImg.style.objectPosition = avatarPos[ai];
       avatarImg.style.opacity = '1';
     }, 400);
     avatarMsg.classList.add('show');
@@ -1043,6 +1050,7 @@
     { name:"新加坡", coords:[1.35,103.82], emoji:"🦁", region:"abroad", desc:"The cleanest city I've ever been to. Ordered chaos.", photo:"https://picsum.photos/240/140?random=12" },
     { name:"吉隆坡", coords:[3.14,101.69], emoji:"🌴", region:"abroad", desc:"Malaysia — twin towers and tropical heat.", photo:"https://picsum.photos/240/140?random=13" },
     { name:"曼谷", coords:[13.75,100.52], emoji:"🛕", region:"abroad", desc:"Thailand — temples, tuk-tuks, and street food at 11pm.", photo:"https://picsum.photos/240/140?random=14" },
+    { name:"首尔", coords:[37.57,126.98], emoji:"🇰🇷", region:"abroad", desc:"Korea — palaces, late-night street food, and Han River lights.", photo:"https://picsum.photos/240/140?random=18" },
     // USA
     { name:"旧金山", coords:[37.77,-122.42], emoji:"🌉", region:"abroad", desc:"Baker Beach at golden hour, Golden Gate in the background.", photo:"photos/sf.jpg" },
     { name:"伯克利", coords:[37.87,-122.27], emoji:"🐻", region:"abroad", desc:"Walked through Sather Gate and felt the energy.", photo:"photos/berkeley.jpg" },
@@ -1053,7 +1061,7 @@
 
   window.addEventListener('load', () => {
     if (typeof L === 'undefined') return;
-    travelMap = L.map('map', { scrollWheelZoom: false, worldCopyJump: true, zoomSnap: 0.5 }).setView([28, 108], 2.5);
+    travelMap = L.map('map', { scrollWheelZoom: true, worldCopyJump: true, zoomSnap: 0.5 }).setView([28, 108], 2.5);
     applyMapTiles();
 
     places.forEach(p => {
