@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Yukai Wang · 数据小馆</title>
+<title>Yukai Wang · Data Studio</title>
 <meta name="description" content="Personal homepage of Yukai Wang — CS & Bioinformatics @ SJTU. Research in LLMs, Agents, Multimodal, and LLM Reasoning." />
 
 <!-- Leaflet (interactive travel map) -->
@@ -88,14 +88,18 @@
     padding: 12px 6vw;
   }
   .nav-brand {
-    font-weight: 700;
+    display: grid;
+    place-items: center;
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 0.95rem;
     letter-spacing: 0.5px;
-    color: var(--text-strong);
-    opacity: 0;
-    transform: translateY(-6px);
-    transition: opacity 0.35s ease, transform 0.35s ease;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    transition: background 0.25s ease, color 0.25s ease;
   }
-  nav.scrolled .nav-brand { opacity: 1; transform: translateY(0); }
+  .nav-brand:hover { background: var(--accent); color: #0B1120; }
   .nav-links { display: flex; gap: 28px; align-items: center; }
   .nav-links a {
     font-size: 0.92rem;
@@ -663,6 +667,15 @@
     font-variant-numeric: tabular-nums;
   }
   .track:hover .plays { color: var(--accent); border-color: var(--accent); }
+  .music-note {
+    margin: 4px 0 8px 46px;
+    font-size: 0.84rem;
+    font-style: italic;
+    color: var(--text-soft);
+    border-left: 2px solid var(--accent-2);
+    padding-left: 12px;
+  }
+  .music-note .src { color: var(--accent); font-style: normal; font-size: 0.76rem; }
 
   /* Footer */
   footer {
@@ -696,7 +709,7 @@
 
 <!-- ===== NAV ===== -->
 <nav id="nav">
-  <span class="nav-brand">Yukai Wang</span>
+  <a href="#top" class="nav-brand" aria-label="Home">YK</a>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#honors">Honors</a>
@@ -715,7 +728,7 @@
     <img id="avatarImg" src="avatar1.jpg" alt="Yukai Wang" />
     <span class="avatar-hint">&#8635;</span>
   </div>
-  <div class="avatar-msg" id="avatarMsg">另一面的我 👋</div>
+  <div class="avatar-msg" id="avatarMsg">Another side of me 👋</div>
   <h1>Yukai Wang&nbsp;·&nbsp;王誉凯</h1>
   <p class="subtitle">B.E. CS &amp; B.S. Bioinformatics @ <span class="accent">SJTU</span> · <span class="accent">NeurIPS 2026</span></p>
 
@@ -727,7 +740,7 @@
 
   <div class="tags">
     <span class="tag">LLMs</span>
-    <span class="tag">Agents</span>
+    <span class="tag">LLM Agents</span>
     <span class="tag">Multimodal</span>
     <span class="tag">LLM Reasoning</span>
   </div>
@@ -763,14 +776,13 @@
   <div class="card about">
     <div class="about-grid">
       <div>
-        <p>Hi, I'm <strong>Yukai</strong> — an undergrad at SJTU's <strong>Zhiyuan Honors College</strong>, working toward a double degree in Computer Science and Bioinformatics (Class of 2027, started in 2023).</p>
-        <p>These days I do research at <strong>APEX Lab</strong> on <strong>multimodal LLM agents</strong> — our latest work is under review at NeurIPS 2026. I'm drawn to the messy, in-between questions: how agents remember, reason, and stay reliable when the inputs get noisy.</p>
-        <p>Off the clock I'm usually somewhere new — I've wandered through <em>20+ places</em> so far — with a Mandarin pop playlist on loop. This page is a little of both: the research and the rest of life.</p>
+        <p>I'm a sophomore at <strong>Shanghai Jiao Tong University</strong>, pursuing a dual degree in Computer Science and Bioinformatics under the <strong>Zhiyuan Honors Program</strong>. My research sits at the intersection of <strong>LLM agents and multimodality</strong> — I'm currently a second author on a benchmark paper submitted to NeurIPS 2026.</p>
+        <p>Outside the lab, I've wandered through 20 cities across 5 countries, listened to 1,047 songs in May alone, and yes — I've had <em>前度</em> on repeat 174 times this month.</p>
       </div>
       <div class="about-stats">
-        <div class="stat"><div class="num">2027</div><div class="lbl">Expected Grad</div></div>
-        <div class="stat"><div class="num">20+</div><div class="lbl">Places Visited</div></div>
-        <div class="stat"><div class="num">1</div><div class="lbl">NeurIPS Submission</div></div>
+        <div class="stat"><div class="num">5</div><div class="lbl">Countries</div></div>
+        <div class="stat"><div class="num">20</div><div class="lbl">Cities Visited</div></div>
+        <div class="stat"><div class="num">1</div><div class="lbl">NeurIPS Paper</div></div>
       </div>
     </div>
   </div>
@@ -788,22 +800,22 @@
       <div class="tl-item">
         <div class="tl-year">2025</div>
         <div class="tl-title">🏆 National Scholarship</div>
-        <div class="tl-desc">Top 2% — China's highest-level undergraduate scholarship.</div>
+        <div class="tl-desc">Top 2% · Ministry of Education, China</div>
       </div>
       <div class="tl-item">
         <div class="tl-year">2024</div>
         <div class="tl-title">⭐ Zhiyuan Honors Scholarship</div>
-        <div class="tl-desc">Top 10% of the Zhiyuan Honors College.</div>
+        <div class="tl-desc">Top 10% · SJTU</div>
       </div>
       <div class="tl-item">
         <div class="tl-year">2024</div>
         <div class="tl-title">📚 Academic Excellence Scholarship</div>
-        <div class="tl-desc">Awarded for outstanding academic performance.</div>
+        <div class="tl-desc">SJTU</div>
       </div>
       <div class="tl-item">
         <div class="tl-year">2023</div>
         <div class="tl-title">⭐ Zhiyuan Honors Scholarship</div>
-        <div class="tl-desc">Top 10% of the Zhiyuan Honors College.</div>
+        <div class="tl-desc">Top 10% · SJTU</div>
       </div>
     </div>
   </div>
@@ -838,13 +850,13 @@
   </div>
   <div id="map"></div>
   <div class="travel-stats">
-    <span>🌍 20 places explored</span>
+    <span>🌍 20 Places Explored</span>
     <span class="sep">·</span>
-    <span>🇨🇳 10 cities in China</span>
+    <span>🇨🇳 10 Cities in China</span>
     <span class="sep">·</span>
-    <span>🌏 3 countries in Asia</span>
+    <span>🌏 3 Countries in Asia</span>
     <span class="sep">·</span>
-    <span>🇺🇸 5 cities in the U.S.</span>
+    <span>🇺🇸 5 Cities in the US</span>
   </div>
   <div class="photo-row">
     <div class="photo" data-full="photos/sf.jpg" data-cap="San Francisco">
@@ -873,7 +885,7 @@
 <section class="block reveal" id="music">
   <div class="section-head">
     <span class="index">05</span>
-    <h2>Music</h2>
+    <h2>My Music</h2>
     <span class="rule"></span>
   </div>
   <div class="card">
@@ -881,16 +893,16 @@
     <div class="music-block">
       <div class="music-sub-title">Listening Highlights · May 2026</div>
       <div class="music-stats">
-        <div class="mstat"><div class="emoji">🎵</div><div class="big">1,047</div><div class="desc">首 · 5月总播放</div></div>
-        <div class="mstat"><div class="emoji">🌙</div><div class="big">03:05 AM</div><div class="desc">最晚深夜听歌</div></div>
-        <div class="mstat"><div class="emoji">📅</div><div class="big">28 天</div><div class="desc">连续听歌 · 打败 98.56% 用户</div></div>
-        <div class="mstat"><div class="emoji">🎤</div><div class="big">607 位</div><div class="desc">本月相伴歌手数</div></div>
+        <div class="mstat"><div class="emoji">🎵</div><div class="big">1,047</div><div class="desc">tracks · May total plays</div></div>
+        <div class="mstat"><div class="emoji">🌙</div><div class="big">3:05 AM</div><div class="desc">latest late-night session</div></div>
+        <div class="mstat"><div class="emoji">📅</div><div class="big">28 days</div><div class="desc">listening streak · Top 1.44%</div></div>
+        <div class="mstat"><div class="emoji">🎤</div><div class="big">607</div><div class="desc">artists · accompanied me this month</div></div>
       </div>
     </div>
 
     <!-- ② Artist chart -->
     <div class="music-block">
-      <div class="music-sub-title">My Artist Chart · 我的音乐宇宙</div>
+      <div class="music-sub-title">My Music Universe</div>
       <div class="artist-chart">
         <div class="chart-row"><div class="chart-label"><span class="name">周杰伦 Jay Chou</span><span class="plays">18 次</span></div><div class="bar-track" title="周杰伦 · 18 次"><div class="bar-fill" data-w="100%"></div></div></div>
         <div class="chart-row"><div class="chart-label"><span class="name">G.E.M. 邓紫棋</span><span class="plays">15 次</span></div><div class="bar-track" title="邓紫棋 · 15 次"><div class="bar-fill" data-w="83%"></div></div></div>
@@ -905,6 +917,7 @@
       <div class="music-sub-title">May 2026 · Top 10</div>
       <div class="playlist">
         <div class="track top3"><span class="rank">1</span><div class="meta"><div class="t">前度</div><div class="a">朱雅</div></div><span class="plays">174 次</span></div>
+        <div class="music-note">💬 "You love Zhu Ya's songs the most." <span class="src">— NetEase Music May Report</span></div>
         <div class="track top3"><span class="rank">2</span><div class="meta"><div class="t">一个人想着一个人（说唱版）</div><div class="a">艾比利</div></div><span class="plays">41 次</span></div>
         <div class="track top3"><span class="rank">3</span><div class="meta"><div class="t">我可以假装很好</div><div class="a">何洁 / 苏醒 AllenSu</div></div><span class="plays">39 次</span></div>
         <div class="track"><span class="rank">4</span><div class="meta"><div class="t">生分</div><div class="a">川青</div></div><span class="plays">30 次</span></div>
@@ -922,13 +935,13 @@
 <!-- ===== FOOTER ===== -->
 <footer>
   <div style="text-align:center; padding:16px 0">
-    <p style="color:#666;font-size:11px;margin-bottom:8px">Visitor Map · 全球访客</p>
+    <p style="color:#666;font-size:11px;margin-bottom:8px">Visitor Map · Global Visitors</p>
     <div style="width:220px;height:110px;background:rgba(79,195,247,0.1);
       border:1px solid rgba(79,195,247,0.2);border-radius:10px;
       margin:0 auto;display:flex;align-items:center;justify-content:center;
-      color:#4FC3F7;font-size:12px">🌍 clustrmaps.com（部署后替换）</div>
+      color:#4FC3F7;font-size:12px">🌍 clustrmaps.com (replace after deploy)</div>
   </div>
-  <div class="copy">&copy; 2026 <span class="accent">Yukai Wang</span> · Made with Claude Code</div>
+  <div class="copy">&copy; 2026 <span class="accent">Yukai Wang</span> · Built with Claude Code</div>
 </footer>
 
 <script>
@@ -1013,29 +1026,29 @@
 
   const places = [
     // China mainland
-    { name:"上海", coords:[31.23,121.47], emoji:"🏙️", region:"cn", desc:"从小长大的城市，母校 SJTU 所在地", photo:"photos/disney.jpg" },
-    { name:"辽宁丹东", coords:[40.13,124.39], emoji:"🏠", region:"cn", desc:"出生的地方，老家", photo:"https://picsum.photos/240/140?random=1" },
-    { name:"北京", coords:[39.91,116.39], emoji:"🏛️", region:"cn", desc:"故宫、长城，第一次独自旅行", photo:"https://picsum.photos/240/140?random=2" },
-    { name:"桂林", coords:[25.27,110.29], emoji:"🏞️", region:"cn", desc:"最美的喀斯特地貌", photo:"https://picsum.photos/240/140?random=3" },
-    { name:"杭州", coords:[30.25,120.15], emoji:"🌿", region:"cn", desc:"西湖和龙井茶", photo:"https://picsum.photos/240/140?random=4" },
-    { name:"南京", coords:[32.06,118.79], emoji:"🦆", region:"cn", desc:"历史沉淀很厚的城市", photo:"https://picsum.photos/240/140?random=5" },
-    { name:"苏州", coords:[31.30,120.62], emoji:"🌸", region:"cn", desc:"园林，古典美学", photo:"https://picsum.photos/240/140?random=6" },
-    { name:"南通", coords:[31.98,120.89], emoji:"🌊", region:"cn", desc:"江海之城", photo:"https://picsum.photos/240/140?random=7" },
-    { name:"莫干山", coords:[30.65,119.52], emoji:"🎋", region:"cn", desc:"竹林、民宿、清晨的雾", photo:"https://picsum.photos/240/140?random=8" },
-    { name:"千岛湖", coords:[29.60,119.03], emoji:"💧", region:"cn", desc:"一千座岛屿的湖，碧绿透彻", photo:"https://picsum.photos/240/140?random=9" },
+    { name:"上海", coords:[31.23,121.47], emoji:"🏙️", region:"cn", desc:"My home city. Where I grew up and where SJTU calls home.", photo:"photos/disney.jpg" },
+    { name:"辽宁丹东", coords:[40.13,124.39], emoji:"🏠", region:"cn", desc:"Where I was born. A city where China meets the Yalu River border.", photo:"https://picsum.photos/240/140?random=1" },
+    { name:"北京", coords:[39.91,116.39], emoji:"🏛️", region:"cn", desc:"History everywhere. My first solo trip.", photo:"https://picsum.photos/240/140?random=2" },
+    { name:"桂林", coords:[25.27,110.29], emoji:"🏞️", region:"cn", desc:"The most surreal karst landscape I've ever seen.", photo:"https://picsum.photos/240/140?random=3" },
+    { name:"杭州", coords:[30.25,120.15], emoji:"🌿", region:"cn", desc:"West Lake, longjing tea, and lotus in the rain.", photo:"https://picsum.photos/240/140?random=4" },
+    { name:"南京", coords:[32.06,118.79], emoji:"🦆", region:"cn", desc:"A city that carries a century of history quietly.", photo:"https://picsum.photos/240/140?random=5" },
+    { name:"苏州", coords:[31.30,120.62], emoji:"🌸", region:"cn", desc:"Classical gardens and slow canals.", photo:"https://picsum.photos/240/140?random=6" },
+    { name:"南通", coords:[31.98,120.89], emoji:"🌊", region:"cn", desc:"A coastal city where the Yangtze meets the sea.", photo:"https://picsum.photos/240/140?random=7" },
+    { name:"莫干山", coords:[30.65,119.52], emoji:"🎋", region:"cn", desc:"Bamboo forests, morning fog, and a good book.", photo:"https://picsum.photos/240/140?random=8" },
+    { name:"千岛湖", coords:[29.60,119.03], emoji:"💧", region:"cn", desc:"A lake with a thousand islands, impossibly green.", photo:"https://picsum.photos/240/140?random=9" },
     // HK / Macau
-    { name:"香港", coords:[22.32,114.17], emoji:"🌃", region:"abroad", desc:"霓虹灯与维多利亚港", photo:"https://picsum.photos/240/140?random=10" },
-    { name:"澳门", coords:[22.16,113.55], emoji:"🎰", region:"abroad", desc:"东西方交融的小城", photo:"https://picsum.photos/240/140?random=11" },
+    { name:"香港", coords:[22.32,114.17], emoji:"🌃", region:"abroad", desc:"Neon lights and Victoria Harbour at midnight.", photo:"https://picsum.photos/240/140?random=10" },
+    { name:"澳门", coords:[22.16,113.55], emoji:"🎰", region:"abroad", desc:"Where Portuguese tiles meet Chinese temples.", photo:"https://picsum.photos/240/140?random=11" },
     // Southeast Asia
-    { name:"新加坡", coords:[1.35,103.82], emoji:"🦁", region:"abroad", desc:"花园城市，秩序感极强", photo:"https://picsum.photos/240/140?random=12" },
-    { name:"吉隆坡", coords:[3.14,101.69], emoji:"🌴", region:"abroad", desc:"马来西亚，双子塔和热带雨林", photo:"https://picsum.photos/240/140?random=13" },
-    { name:"曼谷", coords:[13.75,100.52], emoji:"🛕", region:"abroad", desc:"泰国，寺庙和街头小吃", photo:"https://picsum.photos/240/140?random=14" },
+    { name:"新加坡", coords:[1.35,103.82], emoji:"🦁", region:"abroad", desc:"The cleanest city I've ever been to. Ordered chaos.", photo:"https://picsum.photos/240/140?random=12" },
+    { name:"吉隆坡", coords:[3.14,101.69], emoji:"🌴", region:"abroad", desc:"Malaysia — twin towers and tropical heat.", photo:"https://picsum.photos/240/140?random=13" },
+    { name:"曼谷", coords:[13.75,100.52], emoji:"🛕", region:"abroad", desc:"Thailand — temples, tuk-tuks, and street food at 11pm.", photo:"https://picsum.photos/240/140?random=14" },
     // USA
-    { name:"旧金山", coords:[37.77,-122.42], emoji:"🌉", region:"abroad", desc:"金门大桥下的傍晚，科技之城", photo:"photos/sf.jpg" },
-    { name:"伯克利", coords:[37.87,-122.27], emoji:"🐻", region:"abroad", desc:"UC Berkeley 校园，Sather Gate", photo:"photos/berkeley.jpg" },
-    { name:"洛杉矶", coords:[34.05,-118.24], emoji:"🎬", region:"abroad", desc:"好莱坞、海滩和永远的阳光", photo:"https://picsum.photos/240/140?random=15" },
-    { name:"夏洛特", coords:[35.23,-80.84], emoji:"🏙️", region:"abroad", desc:"美国东南部，意外的惊喜", photo:"https://picsum.photos/240/140?random=16" },
-    { name:"黄石公园", coords:[44.43,-110.59], emoji:"🌋", region:"abroad", desc:"间歇泉、野牛群和原始的美国", photo:"https://picsum.photos/240/140?random=17" }
+    { name:"旧金山", coords:[37.77,-122.42], emoji:"🌉", region:"abroad", desc:"Baker Beach at golden hour, Golden Gate in the background.", photo:"photos/sf.jpg" },
+    { name:"伯克利", coords:[37.87,-122.27], emoji:"🐻", region:"abroad", desc:"Walked through Sather Gate and felt the energy.", photo:"photos/berkeley.jpg" },
+    { name:"洛杉矶", coords:[34.05,-118.24], emoji:"🎬", region:"abroad", desc:"Hollywood, beaches, and perpetual sunshine.", photo:"https://picsum.photos/240/140?random=15" },
+    { name:"夏洛特", coords:[35.23,-80.84], emoji:"🏙️", region:"abroad", desc:"A quieter corner of America, full of surprises.", photo:"https://picsum.photos/240/140?random=16" },
+    { name:"黄石公园", coords:[44.43,-110.59], emoji:"🌋", region:"abroad", desc:"Geysers, bison, and the raw edge of the earth.", photo:"https://picsum.photos/240/140?random=17" }
   ];
 
   window.addEventListener('load', () => {
