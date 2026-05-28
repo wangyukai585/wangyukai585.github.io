@@ -1,0 +1,12 @@
+# Local report artifacts (screenshots + hash), not part of the site
+screenshots/
+
+# Local Claude Code tooling/hooks config (machine-specific paths)
+.claude/
+
+# Course materials, not part of the deployed site
+vibe_coding_guide.html
+作业三_Vibe_Coding_个人主页_精简版.docx
+
+# macOS
+.DS_Store
