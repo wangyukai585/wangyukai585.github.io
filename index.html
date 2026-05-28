@@ -747,33 +747,37 @@
   /* ② GitHub graph */
   .gh-graph {
     margin-top: 22px;
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
     border: 1px solid var(--card-border);
-    line-height: 0;
+    background: var(--card);
+    backdrop-filter: blur(12px);
   }
-  .gh-graph img { width: 100%; height: auto; display: block; }
+  .gh-graph-label {
+    display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px;
+    padding: 14px 18px 12px;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .gh-title { font-weight: 700; color: var(--text-strong); font-size: 0.95rem; }
+  .gh-desc  { color: var(--text-soft); font-size: 0.82rem; flex: 1; min-width: 180px; }
+  .gh-link  { font-size: 0.8rem; font-weight: 600; color: var(--accent); white-space: nowrap; }
+  .gh-link:hover { text-decoration: underline; }
+  .gh-graph img { width: 100%; height: auto; display: block; padding: 12px 16px; box-sizing: border-box; }
 
   /* ③ Flip quote card */
   .flip-card {
-    perspective: 900px;
     margin: 28px auto 0;
-    width: 100%; max-width: 540px;
-    height: 140px;
+    width: 100%; max-width: 560px;
+    height: 148px;
     cursor: pointer;
     user-select: none;
   }
   .flip-inner {
     width: 100%; height: 100%;
-    transition: transform 0.6s cubic-bezier(.4,0,.2,1);
-    transform-style: preserve-3d;
     position: relative;
   }
-  .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
-  .flip-front, .flip-back {
+  .flip-front {
     position: absolute; inset: 0;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
     border-radius: 16px;
     padding: 22px 26px;
     display: flex; flex-direction: column; justify-content: center;
@@ -781,8 +785,7 @@
     background: var(--card);
     backdrop-filter: blur(12px);
   }
-  .flip-back { transform: rotateY(180deg); }
-  .flip-quote { font-size: 1rem; font-weight: 600; color: var(--text-strong); line-height: 1.6; }
+  .flip-quote { font-size: 1rem; font-weight: 600; color: var(--text-strong); line-height: 1.65; }
   .flip-src  { font-size: 0.75rem; color: var(--accent); margin-top: 10px; }
   .flip-hint { font-size: 0.72rem; color: var(--text-soft); margin-top: 8px; text-align: right; }
 
@@ -793,19 +796,6 @@
     z-index: 9999;
   }
 
-  /* ⑦ Theme ripple overlay */
-  #themeRipple {
-    position: fixed; inset: 0;
-    pointer-events: none;
-    z-index: 9998;
-    background: var(--bg-1);
-    clip-path: circle(0px at 50% 50%);
-    transition: clip-path 0s;
-  }
-  #themeRipple.expanding {
-    transition: clip-path 0.55s cubic-bezier(.4,0,.2,1);
-    clip-path: circle(200vmax at var(--rx,50%) var(--ry,50%));
-  }
 
   /* ⑧ Top loading bar */
   #loadBar {
@@ -840,8 +830,6 @@
 <body>
 <div id="loadBar"></div>
 <canvas id="particleCanvas"></canvas>
-<div id="themeRipple"></div>
-
 <!-- ===== NAV ===== -->
 <nav id="nav">
   <a href="#top" class="nav-brand" aria-label="Home">YK</a>
@@ -984,11 +972,16 @@
       </ul>
       <a class="paper-link" href="https://arxiv.org/abs/2605.15710" target="_blank" rel="noopener">arXiv:2605.15710 ↗</a>
     </div>
-    <div class="gh-graph">
-      <img src="https://ghchart.rshah.org/4FC3F7/wangyukai585"
-        alt="GitHub contribution graph" loading="lazy"
-        onerror="this.parentElement.style.display='none'" />
+  </div>
+  <div class="gh-graph">
+    <div class="gh-graph-label">
+      <span class="gh-title">GitHub Activity</span>
+      <span class="gh-desc">Each square = one day. Darker = more commits. The green trail is where the code happened.</span>
+      <a href="https://github.com/wangyukai585" target="_blank" rel="noopener" class="gh-link">@wangyukai585 ↗</a>
     </div>
+    <img src="https://ghchart.rshah.org/4FC3F7/wangyukai585"
+      alt="GitHub contribution graph" loading="lazy"
+      onerror="this.closest('.gh-graph').style.display='none'" />
   </div>
 </section>
 
@@ -1077,17 +1070,12 @@
     <h2 style="font-size:1.1rem;font-weight:600;color:var(--text-soft)">A random thought — click to flip</h2>
     <span class="rule"></span>
   </div>
-  <div class="flip-card" id="flipCard" title="Click to reveal next quote">
+  <div class="flip-card" id="flipCard" title="Click for next quote">
     <div class="flip-inner" id="flipInner">
       <div class="flip-front">
-        <div class="flip-quote" id="flipFront"></div>
-        <div class="flip-src"  id="flipFrontSrc"></div>
+        <div class="flip-quote" id="flipQuote"></div>
+        <div class="flip-src"  id="flipSrc"></div>
         <div class="flip-hint">click to flip ↺</div>
-      </div>
-      <div class="flip-back">
-        <div class="flip-quote" id="flipBack"></div>
-        <div class="flip-src"  id="flipBackSrc"></div>
-        <div class="flip-hint">click again ↺</div>
       </div>
     </div>
   </div>
@@ -1270,20 +1258,6 @@
     });
   })();
 
-  /* ⑦ ---------- Theme ripple ---------- */
-  const ripple = document.getElementById('themeRipple');
-  const origToggle = document.getElementById('themeToggle');
-  origToggle.addEventListener('click', (e) => {
-    const r = origToggle.getBoundingClientRect();
-    const rx = r.left + r.width / 2, ry = r.top + r.height / 2;
-    ripple.style.setProperty('--rx', rx + 'px');
-    ripple.style.setProperty('--ry', ry + 'px');
-    ripple.style.background = root.getAttribute('data-theme') === 'dark'
-      ? 'var(--bg-1)' : '#0B1120';
-    ripple.classList.add('expanding');
-    setTimeout(() => ripple.classList.remove('expanding'), 600);
-  }, true);
-
   /* ⑤ ---------- Mouse particle trail ---------- */
   (function() {
     const canvas = document.getElementById('particleCanvas');
@@ -1357,7 +1331,7 @@
       { text: '总有一天，你的负担将变成礼物，你受的苦将照亮你的路。', src: '— 网易云热评' },
       { text: 'The people who are crazy enough to think they can change the world are the ones who do.', src: '— Steve Jobs' },
       { text: '念念不忘，必有回响。', src: '— 《一代宗师》' },
-      { text: 'Stay hungry, stay foolish.', src: '— Steve Jobs, 2005 Stanford' },
+      { text: 'Stay hungry, stay foolish.', src: '— Steve Jobs, Stanford 2005' },
       { text: '你知道你有多努力，所以你知道自己值得。', src: '— 网易云热评' },
       { text: 'Somewhere, something incredible is waiting to be known.', src: '— Carl Sagan' },
       { text: '我曾踏足山巅，也曾跌落谷底，两者都使我受益良多。', src: '— 尼采' },
@@ -1365,37 +1339,37 @@
       { text: '生活最沉重的负担，不是工作，而是无聊。', src: '— 罗曼·罗兰' },
       { text: 'An expert is a man who has made all the mistakes which can be made in a very narrow field.', src: '— Niels Bohr' },
     ];
-    let idx = Math.floor(Math.random() * quotes.length);
-    let nextIdx = (idx + 1) % quotes.length;
-    let flipped = false;
 
-    const card = document.getElementById('flipCard');
-    const frontQ = document.getElementById('flipFront');
-    const frontS = document.getElementById('flipFrontSrc');
-    const backQ  = document.getElementById('flipBack');
-    const backS  = document.getElementById('flipBackSrc');
+    const inner   = document.getElementById('flipInner');
+    const quoteEl = document.getElementById('flipQuote');
+    const srcEl   = document.getElementById('flipSrc');
+    let cur = Math.floor(Math.random() * quotes.length);
+    let busy = false;
 
-    function loadSide(quoteEl, srcEl, i) {
-      quoteEl.textContent = quotes[i].text;
-      srcEl.textContent   = quotes[i].src;
-    }
-    loadSide(frontQ, frontS, idx);
-    loadSide(backQ,  backS,  nextIdx);
+    function show(i) { quoteEl.textContent = quotes[i].text; srcEl.textContent = quotes[i].src; }
+    show(cur);
 
-    card.addEventListener('click', () => {
-      flipped = !flipped;
-      card.classList.toggle('flipped', flipped);
-      const showing   = flipped ? nextIdx : idx;
-      const hiddenIdx = (showing + 1) % quotes.length;
+    document.getElementById('flipCard').addEventListener('click', () => {
+      if (busy) return;
+      busy = true;
+      cur = (cur + 1) % quotes.length;
+
+      // Spin out to 90°
+      inner.style.transition = 'transform 0.25s ease-in';
+      inner.style.transform  = 'rotateY(90deg)';
+
       setTimeout(() => {
-        if (flipped) {
-          idx = nextIdx; nextIdx = hiddenIdx;
-          loadSide(frontQ, frontS, idx);
-        } else {
-          nextIdx = idx; idx = hiddenIdx;
-          loadSide(backQ, backS, nextIdx);
-        }
-      }, 320);
+        // Invisible — swap content, start from -90°
+        inner.style.transition = 'none';
+        inner.style.transform  = 'rotateY(-90deg)';
+        show(cur);
+        // Force reflow so the no-transition reset takes effect
+        inner.getBoundingClientRect();
+        // Spin back to 0°
+        inner.style.transition = 'transform 0.25s ease-out';
+        inner.style.transform  = 'rotateY(0deg)';
+        setTimeout(() => { busy = false; }, 260);
+      }, 260);
     });
   })();
 
