@@ -7,6 +7,6 @@ Checked on 8 November 2026.
 - REALM figure: Figure 2 from [REALM](https://arxiv.org/html/2609.16053v1), [original image](https://arxiv.org/html/2609.16053v1/method_framework.png). Authors: Yuanyi Song, Yukai Wang, et al. Reproduced at the co-author's request for his academic homepage. Image unchanged, displayed at reduced size.
 - Publication titles and author lists checked against [SMMBench](https://arxiv.org/abs/2605.15710) and [REALM](https://arxiv.org/abs/2609.16053).
 - NeurIPS acceptance and ICLR review status follow the owner's supplied CV; they are not independently established by the arXiv abstracts.
-- Advisor links: [Weiwen Liu](https://wwliu555.github.io/) (verified through [SJTU faculty page](https://cs.sjtu.edu.cn/en/jiaoshiml/liuweiwen.html)); [Meng Jiang](https://www.meng-jiang.com/).
+- Advisor links: [Weiwen Liu](https://wwliu555.github.io/) (verified through [SJTU faculty page](https://cs.sjtu.edu.cn/en/jiaoshiml/liuweiwen.html)); [Meng Jiang](https://data-ai-computing.nd.edu/people/meng-jiang/).
 - Google Scholar profile and Chinese name retained from the owner's previous website.
 - The downloadable CV is the owner's supplied v016 PDF, unchanged.
