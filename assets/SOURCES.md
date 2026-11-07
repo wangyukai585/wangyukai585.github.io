@@ -10,3 +10,8 @@ Checked on 8 November 2026.
 - Advisor links: [Weiwen Liu](https://wwliu555.github.io/) (verified through [SJTU faculty page](https://cs.sjtu.edu.cn/en/jiaoshiml/liuweiwen.html)); [Meng Jiang](https://data-ai-computing.nd.edu/people/meng-jiang/).
 - Google Scholar profile and Chinese name retained from the owner's previous website.
 - The downloadable CV is the owner's supplied v016 PDF, unchanged.
+
+- Academic template: [Jon Barron source](https://github.com/jonbarron/jonbarron.github.io), whose README permits cloning for personal use.
+- Notre Dame seal: used to identify the owner’s research affiliation.
+- Lato fonts: the same Latin WOFF2 files used by the reference stylesheet, downloaded from Google Fonts and served locally. License included in `fonts/OFL.txt`.
+- Faculty co-author links: [Jianghao Lin](https://linjianghao.com/), [Weinan Zhang](https://wnzhang.net/), [Yong Yu](https://xsb.seiee.sjtu.edu.cn/english/detail/386_695.htm).

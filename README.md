@@ -1,6 +1,6 @@
 # Yukai Wang · Academic Homepage
 
-A minimal, responsive academic website hosted on [GitHub Pages](https://wangyukai585.github.io/).
+An academic website using the Jon Barron template hosted on [GitHub Pages](https://wangyukai585.github.io/).
 
 ## Editing
 
@@ -24,4 +24,4 @@ GitHub Pages serves the root of the `main` branch. Commit and push changes to pu
 
 Education, contributions, publication status, and dates follow the owner's November 2026 CV. Scholarship amounts and the 2024 Class B award follow the owner's corrections. Public paper pages supply figures and resource links. The personal statement is not included in this repository.
 
-Visual structure follows classic academic homepages; the implementation is original.
+Template: [Jon Barron](https://jonbarron.info/), whose repository allows cloning for personal use. The Lato fonts are hosted locally under the SIL Open Font License; see `assets/fonts/OFL.txt`.
