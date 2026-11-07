@@ -10,7 +10,7 @@ An academic website using the Jon Barron template hosted on [GitHub Pages](https
 - `assets/documents/Yukai_Wang_CV.pdf`: downloadable CV.
 - `assets/SOURCES.md`: provenance for images and research information.
 
-No framework, package installation, build step, tracking, or external font service is required. All essential content is available without JavaScript.
+No framework, package installation, build step, or external font service is required. All essential content is available without JavaScript. The Page Views section uses the owner’s original MapMyVisitors counter; `assets/visitors.js` loads it only on the public GitHub Pages hostname, so local previews do not count as visits.
 
 ## Local preview
 

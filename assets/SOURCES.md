@@ -15,3 +15,7 @@ Checked on 8 November 2026.
 - Notre Dame seal: used to identify the owner’s research affiliation.
 - Lato fonts: the same Latin WOFF2 files used by the reference stylesheet, downloaded from Google Fonts and served locally. License included in `fonts/OFL.txt`.
 - Faculty co-author links: [Jianghao Lin](https://linjianghao.com/), [Weinan Zhang](https://wnzhang.net/), [Yong Yu](https://xsb.seiee.sjtu.edu.cn/english/detail/386_695.htm).
+
+- Laboratory links: [APEX Lab](https://apex.sjtu.edu.cn/) and [DM² Lab](http://www.meng-jiang.com/lab.html). Affiliations and summer 2026 iSURE participation follow the owner’s corrections.
+- Travel and music interests retained from the owner’s previous public website.
+- Global visitor map: the owner’s existing [MapMyVisitors](https://mapmyvisitors.com/) widget identifier, retained from the original website. Display colors updated to match the white academic layout.
