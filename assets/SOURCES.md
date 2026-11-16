@@ -9,7 +9,7 @@ Checked on 8 November 2026.
 - NeurIPS acceptance and REALM's under-review status follow the owner's supplied CV; they are not independently established by the arXiv abstracts. The specific review venue is omitted at the owner's request (17 November 2026).
 - Advisor links: [Weiwen Liu](https://wwliu555.github.io/) (verified through [SJTU faculty page](https://cs.sjtu.edu.cn/en/jiaoshiml/liuweiwen.html)); [Meng Jiang](https://data-ai-computing.nd.edu/people/meng-jiang/).
 - Google Scholar profile and Chinese name retained from the owner's previous website.
-- The downloadable CV is the owner's v042 PDF (17 November 2026), copied unchanged from the versioned application documents. Its REALM entry retains the under-review status and preprint link without naming the review venue.
+- The downloadable CV is the owner's v043 PDF (17 November 2026), copied unchanged from the versioned application documents. Its REALM entry retains the under-review status and preprint link without naming the review venue.
 
 - Academic template: [Jon Barron source](https://github.com/jonbarron/jonbarron.github.io), whose README permits cloning for personal use.
 - Notre Dame seal: used to identify the owner’s research affiliation.
