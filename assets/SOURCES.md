@@ -2,6 +2,8 @@
 
 Checked on 8 November 2026.
 
+CV content synchronized on 18 November 2026 against v045 and the matching editable Word export. The two degree averages are 96.57/100 (Computer Science and Technology) and 90.15/100 (Bioinformatics); the Notre Dame email and publication summaries follow the CV. The website continues to omit class rankings and detailed project descriptions from Research Experience at the owner's request.
+
 - Portrait and SJTU emblem: retained from the owner's previous public website (`avatar1.jpg` and `photos/sjtu-logo.png`). Portrait is displayed using CSS cropping; the original file is preserved.
 - SMMBench figure: Figure 2 from [SMMBench](https://arxiv.org/html/2605.15710v1), [original image](https://arxiv.org/html/2605.15710v1/main_version_4.png). Authors: Huacan Chai, Yukai Wang, et al. Article license: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Image unchanged, displayed at reduced size. Reused for the co-author's academic homepage.
 - REALM figure: Figure 2 from [REALM](https://arxiv.org/html/2609.16053v1), [original image](https://arxiv.org/html/2609.16053v1/method_framework.png). Authors: Yuanyi Song, Yukai Wang, et al. Reproduced at the co-author's request for his academic homepage. Image unchanged, displayed at reduced size.
