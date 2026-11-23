@@ -21,4 +21,5 @@ CV content synchronized on 18 November 2026 against v045 and the matching editab
 - Laboratory links: [APEX Lab](https://apex.sjtu.edu.cn/) and [DM² Lab](http://www.meng-jiang.com/lab.html). Affiliations and summer 2026 iSURE participation follow the owner’s corrections.
 - Travel and music interests retained from the owner’s previous public website.
 - Athletics results and the Grade 10 piano certificate follow the owner's details supplied on 23 November 2026. Athletics placements are from SJTU's university-wide sports meets. The piano qualification is attributed to the Shanghai Musicians Association; no certificate year or equivalence to another grading system is claimed. Scholarship amounts are displayed in CNY at the owner's request.
+- The student-union leadership role follows the owner's description: Head of the Science and Technology Innovation Department in the owner's college student union at SJTU.
 - Global visitor map: the owner’s existing [MapMyVisitors](https://mapmyvisitors.com/) widget identifier, retained from the original website. Display colors updated to match the white academic layout.
