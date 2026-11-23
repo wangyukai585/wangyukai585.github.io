@@ -27,6 +27,8 @@ table { border: 0; border-spacing: 0; border-collapse: separate; margin: 0 auto;
 .scholar-link a { font-size: inherit; font-style: italic; }
 .news-list, .awards-list { padding-left: 40px; margin: 14px 0; }
 .news-list li, .awards-list li { margin: 3px 0; }
+.honors-list li { margin: 10px 0; }
+.award-details { display: block; margin-top: 3px; }
 .news-list { max-height: 160px; overflow-y: auto; }
 .visitor-map { max-width: 420px; margin: 20px auto 0; }
 .visitor-map #mapmyvisitors-widget { max-width: 100%; }
